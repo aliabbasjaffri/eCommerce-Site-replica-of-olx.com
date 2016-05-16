@@ -1,0 +1,31 @@
+<% @page_title = "Ad" %>
+
+<%= link_to("<< Back to Page", {:controller => 'search' , :action => 'index'}, :class => 'back-link') %>
+
+<div class="Ad show">
+  <h1>Show Ad</h1>
+
+  <table summary="Ad detail view">
+    <tr>
+      <th>Title</th>
+      <td><%= @ad.title %></td>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td><%= @ad.category %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= @ad.description %></td>
+    </tr>
+    <tr>
+      <th>Price Range</th>
+      <td><%= @ad.priceRange %></td>
+    </tr>
+    <tr>
+      <th>Image</th>
+      <td><%= image_tag(@ad.avatar.url(:medium)) %></td>
+    </tr>
+  </table>
+
+</div>

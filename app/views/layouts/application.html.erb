@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<title>E-Commerce | <%= @page_title || "User" %></title>
+	
+  	<script type="text/javascript">
+
+  	
+
+  	</script>
+
+</head>
+<body>
+	<style>
+      body {
+          padding-bottom: 20px;
+          padding-top: 20px;
+      }
+      .navbar {
+          margin-bottom: 20px;
+      }
+    </style>
+
+    <div class="container">
+
+
+		<div class="header">
+			<h1>
+				E-Commerce Site
+			</h1>
+		</div>
+
+		<div class="container">
+			<% if !flash[:notice].blank? %>
+				<div class="notice">
+					<%= flash[:notice] %>
+				</div>
+			<% end %>
+		</div>
+
+		<!-- Before Yield-->
+
+		<%= yield %>
+
+		<!-- After Yield-->
+
+		<div class="footer">
+			<p id="copyright">
+				&copy; Ali Abbas Jaffri
+			</p>
+		</div>
+	</div>
+
+</body>
+</html>

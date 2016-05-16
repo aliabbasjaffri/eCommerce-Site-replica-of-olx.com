@@ -1,0 +1,99 @@
+<% @page_title = "User" %>
+
+<div class="User index">
+  	<h1>User <%= @user_info_from_facebook["name"]%> DashBoard</h1>
+  	<h3>Website:<%= @user_info_from_facebook["website"]%></h3>
+  	<h5><%= @user_info_from_facebook["quotes"]%></h5>
+  	<p>
+  		<%= link_to("Add an Ad", {:controller => 'ad' , :action => 'new'}, :class => 'action new') %>
+	</p>
+
+	<p>
+		<%= link_to("LogOut", {:controller => 'access' , :action => 'logout'}, :class => 'action logout') %>
+	</p>
+
+	<h2>
+		Ads from You
+	</h2>
+
+	<table class="listing" summary="Ads list">
+		<tr class="header">
+		  	<th>&nbsp;</th>
+		  	<th>Title</th>
+		  	<th>&nbsp;</th>
+		  	<th>Category</th>
+		  	<th>&nbsp;</th>
+		  	<th>PriceRange</th>
+		  	<th>&nbsp;</th>
+		  	<th>Image</th>
+		</tr>
+		<% @adsFromYou.each do |ad| %>
+			<tr>
+				<td>&nbsp;</td>
+			  	<td><%= ad.title %></td>
+			  	<th>&nbsp;</th>
+			  	<td><%= ad.category %></td>
+			  	<th>&nbsp;</th>
+			  	<td><%= ad.priceRange %></td>
+			  	<th>&nbsp;</th>
+      			<td><%= image_tag( ad.avatar.url(:thumb)) %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	
+	
+
+
+
+
+
+
+
+
+	<h2>
+		Ads from other users
+	</h2>
+
+	
+
+	<table class="listing" summary="Ads list">
+		<tr class="header">
+		  	<th>&nbsp;</th>
+		  	<th>Title</th>
+		  	<th>&nbsp;</th>
+		  	<th>Category</th>
+		  	<th>&nbsp;</th>
+		  	<th>PriceRange</th>
+		  	<th>&nbsp;</th>
+		  	<th>Image</th>
+		  	<th>&nbsp;</th>
+		  	<th>Rating</th>
+		  	<th>Email User</th>
+		</tr>
+		<% @adsFromOthers.each do |ad| %>
+			<tr>
+				<td>&nbsp;</td>
+			  	<td><%= ad.title %></td>
+			  	<th>&nbsp;</th>
+			  	<td><%= ad.category %></td>
+			  	<th>&nbsp;</th>
+			  	<td><%= ad.priceRange %></td>
+			  	<th>&nbsp;</th>
+      			<td><%= image_tag(ad.avatar.url(:thumb))%></td>
+      			<th>&nbsp;</th>
+ 				<td>
+ 				<%= ad.rating %>
+				</td>
+				<td>
+					<%= link_to "Send User Email", "mailto:"+(User.find(Ad.find(ad.user_id))).email %>
+				</td>
+
+				<td>
+					<%= link_to("Edit Rating", {:controller => 'user' , :action => 'update_rating', :id => ad.id}, :class => 'action edit_rating') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+  
+</div>

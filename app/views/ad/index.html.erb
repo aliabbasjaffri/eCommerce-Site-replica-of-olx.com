@@ -1,0 +1,25 @@
+<% @page_title = "Ad" %>
+
+<div class="subjects index">
+  	<h1>Ads</h1>
+
+	<table class="listing" summary="Ads list">
+		<tr class="header">
+		  	<th>&nbsp;</th>
+		  	<th>Title</th>
+		  	<th>Category</th>
+		  	<th>Price Range</th>
+		</tr>
+		<% @ads.each do |ad| %>
+			<tr>
+				<td>&nbsp;</td>
+			  	<td><%= ad.title %></td>
+			  	<td><%= ad.category %></td>
+			  	<td><%= ad.priceRange %></td>
+			  	<td >
+        			<%= link_to("Show", {:action => 'show', :id => ad.id}, :class => 'action show') %>
+			  	</td>
+			</tr>
+		<% end %>
+	</table>
+</div>

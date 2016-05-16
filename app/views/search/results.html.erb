@@ -1,0 +1,22 @@
+<% @page_title = "Search" %>
+
+<%= link_to("<< Back to Search Page", {:action => 'index'}, :class => 'back-link') %>
+
+<table class="listing" summary="Ads list">
+	<tr class="header">
+	  	<th>&nbsp;</th>
+	  	<th>Title</th>
+	  	<th>Category</th>
+	  	<th>Price Range</th>
+	</tr>
+	<% @result.each do |ad| %>
+		<tr>
+			<td>&nbsp;</td>
+		  	<td><%= ad.title %></td>
+		  	<td><%= ad.category %></td>
+		  	<td><%= ad.priceRange %></td>
+		  	<td><%= image_tag( ad.avatar.url(:thumb)) %></td>
+		  	
+		</tr>
+	<% end %>
+</table>

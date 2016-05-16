@@ -1,0 +1,50 @@
+<% @page_title = "Ad" %>
+
+<%= link_to("<< Back to User Page", {:controller => 'user' , :action => 'index'}, :class => 'back-link') %>
+
+<div class="Ad new">
+  <h2>Create Ad</h2>
+
+  <%= form_for(:ad, :url => { :action => 'create'} , :html => { :multipart => true }) do |f| %>
+
+    <table summary="Ad form fields">
+      <tr>
+        <th><%= f.label(:title ) %></th>
+        <td><%= f.text_field(:title) %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:category ) %></th>
+	        <td>
+	        	<%= f.radio_button(:category , "mobiles") %> Mobile
+	        	<%= f.radio_button(:category , "electronics") %> Electronics
+	        	<%= f.radio_button(:category , "vehicles") %> Vehicles
+	        	<%= f.radio_button(:category , "furniture") %> Furniture
+	        </td>
+      </tr>
+      <tr>
+        <th><%= f.label(:description) %></th>
+        <td><%= f.text_area(:description , :size => '40x5') %></td>
+      </tr>
+      <tr>
+        <th><%= f.label(:priceRange , "Price Range") %></th>
+	        <td>
+	        	<%= f.radio_button(:priceRange , "10,000") %> 10,000
+	        	<%= f.radio_button(:priceRange , "20,000") %> 20,000
+	        	<%= f.radio_button(:priceRange , "30,000") %> 30,000
+	        	<%= f.radio_button(:priceRange , "40,000") %> 40,000
+	        	<%= f.radio_button(:priceRange , "50,000") %> 50,000
+	        </td>
+      </tr>
+
+      <tr>
+        <th><%= f.label("Upload Image") %></th>
+	        <td><%= f.file_field :avatar %></td>
+      </tr>
+    </table>
+
+    <div class="form-buttons">
+      <%= submit_tag("Create Ad") %>
+    </div>
+
+  <% end %>
+</div>

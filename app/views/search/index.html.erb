@@ -1,0 +1,101 @@
+<% @page_title = "Search" %>
+
+<div class="Search">
+  	<h2>
+  		Main Page
+  	</h2>
+
+	<div container>
+
+
+	<p>
+		<span>
+			<strong>
+				Login =>
+			</strong>
+		</span>
+		<%= link_to("Login User",{:controller =>'access',:action => 'login'},:class => 'action login') %>	
+	</p>
+	<p>
+		<span>
+			<strong>
+				Post An Ad =>
+			</strong>
+		</span>
+		<%= link_to("Post An Ad",{:controller =>'ad',:action => 'new'},:class => 'action new') %>
+	</p>
+		
+	</div>
+	</br>
+	</br>
+	</br>
+
+	<span>
+			<strong>
+				<emphasis>
+					Search
+				</emphasis>
+			</strong>
+		</span>
+
+	<div class="form-group">
+		
+		<%= form_tag :action => 'results', :method => 'get' do %>
+      		<%= text_field_tag :search, params[:search] , placeholder:"Search Ads" , class:"form-control input-hg" %>
+      		</br>
+      		<tr>
+	        	<th><%= label(:category , "Category") %></th>
+		        <td>
+		        	<%= radio_button( params[:category] , 'category' , "mobiles") %> Mobile
+		        	<%= radio_button( params[:category] , 'category' , "electronics") %> Electronics
+		        	<%= radio_button( params[:category] , 'category' , "vehicles") %> Vehicles
+		        	<%= radio_button( params[:category] , 'category' , "furniture") %> Furniture
+		        	<%= radio_button( params[:category] , 'category' , "*") %> All
+		        </td>
+	      	</tr>
+
+	      </br>
+
+	      	<tr>
+	        	<th><%= label(:priceRange , "Price Range") %></th>
+		        <td>
+		        	<%= radio_button( params[:priceRange] , 'priceRange' , "10,000") %> 10,000
+		        	<%= radio_button( params[:priceRange] , 'priceRange' , "20,000") %> 20,000
+		        	<%= radio_button( params[:priceRange] , 'priceRange' , "30,000") %> 30,000
+		        	<%= radio_button( params[:priceRange] , 'priceRange' , "40,000") %> 40,000
+		        	<%= radio_button( params[:priceRange] , 'priceRange' , "50,000") %> 50,000
+		        </td>
+	      	</tr>
+
+	      </br>
+    
+      		<%= submit_tag "Search" , class:"btn btn-primary btn-lg btn-block" , :onclick => "if(#{params[:category]} == '' || #{params[:priceRange]} ==  '' ){alert('Please sellect all the fields!')}" %> 
+      		
+		<% end %> 
+	</div>
+
+	</br>
+	</br>
+	</br>
+	
+
+	<table class="listing" summary="Ads list">
+		<tr class="header">
+		  	<th>&nbsp;</th>
+		  	<th>Title</th>
+		  	<th>Category</th>
+		  	<th>Price Range</th>
+		</tr>
+		<% @ads.each do |ad| %>
+			<tr>
+				<td>&nbsp;</td>
+			  	<td><%= ad.title %></td>
+			  	<td><%= ad.category %></td>
+			  	<td><%= ad.priceRange %></td>
+			  	<td >
+        			<%= link_to("Show", {:controller => 'ad' , :action => 'show', :id => ad.id}, :class => 'action show') %>
+			  	</td>
+			</tr>
+		<% end %>
+	</table>
+</div>
